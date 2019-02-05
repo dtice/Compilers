@@ -1,8 +1,5 @@
-/* CAPS : CAPS is a token (terminal) made up of one or more characters.  
-small case symbols are non-terminals. */
-CAPS
-    : ('A' .. 'Z')+
-    ;
+CAPS : CAPS is a token (terminal) made up of one or more characters.  
+small case symbols are non-terminals.
 
 /* Program */
 program           -> PROGRAM id BEGIN pgm_body END 
