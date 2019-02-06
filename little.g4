@@ -6,10 +6,6 @@ program
     : 'PROGRAM' id 'BEGIN' pgm_body 'END'
     ;
     
-NEWLINE
-    : [\r\n]
-    ;
-    
 id
     : IDENTIFIER
     ;
@@ -197,8 +193,12 @@ compop
     ;
     
 while_stmt
-    : 'WHILE' '(' cond ')' decl stmt_list 'ENDWHILE'
+    : WHILE ( cond ) decl stmt_list ENDWHILE
     ;
+    
+IDENTIFIER
+   : ('a' .. 'z' | 'A' .. 'Z')+
+   ;
     
 INTLITERAL
     : ('0'..'9')+
@@ -213,11 +213,32 @@ STRINGLITERAL
     : '"'(('A'..'z')|('0'..'9'))*'"'
     ;
     
-IDENTIFIER
-   : ('a' .. 'z' | 'A' .. 'Z')+
-   ;
+COMMENT
+    :  '--' ~( '\r' | '\n' )*
+    ;
+  
+KEYWORD
+    : 'PROGRAM'
+    | 'BEGIN'
+    | 'END'
+    | 'FUNCTION'
+    | 'READ'
+    | 'WRITE'
+    | 'IF'
+    | 'ELSE'
+    | 'ENDIF'
+    | 'WHILE'
+    | 'ENDWHILE'
+    | 'CONTINUE'
+    | 'BREAK'
+    | 'RETURN'
+    | 'INT'
+    | 'VOID'
+    | 'STRING'
+    | 'FLOAT'
+    ;
     
-op
+OPERATOR
     : ':='
     | '+'
     | '-'
@@ -234,3 +255,4 @@ op
     | '<='
     | '>='
     ;
+    

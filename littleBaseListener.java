@@ -502,18 +502,6 @@ public class littleBaseListener implements littleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhile_stmt(littleParser.While_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOp(littleParser.OpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOp(littleParser.OpContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -416,14 +416,4 @@ public interface littleListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhile_stmt(littleParser.While_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link littleParser#op}.
-	 * @param ctx the parse tree
-	 */
-	void enterOp(littleParser.OpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link littleParser#op}.
-	 * @param ctx the parse tree
-	 */
-	void exitOp(littleParser.OpContext ctx);
 }
