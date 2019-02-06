@@ -1,25 +1,9 @@
 grammar little;
 
+tokens
+
 CAPS
     : ('A' .. 'Z')+
-    ;
-
-op
-    : ':='
-    | '+'
-    | '-'
-    | '*'
-    | '/'
-    | '='
-    | '!='
-    | '<'
-    | '>'
-    | '('
-    | ')'
-    | ';'
-    | ','
-    | '<='
-    | '>='
     ;
     
 program
@@ -137,7 +121,7 @@ write_stmt
     ;
 
 return_stmt
-    : RETURN expr ;
+    : RETURN expr ';'
     ;
     
 expr
@@ -165,4 +149,52 @@ postfix_expr
     
 call_expr
     : id ( expr_list )
+    ;
+    
+expr_list
+    : expr expr_list_tail
+    | 
+    ;
+    
+expr_list_tail
+    : ',' expr expr_list_tail
+    |
+    ;
+    
+primary
+    : '(' expr ')'
+    | id
+    | INTLITERAL
+    | FLOATLITERAL
+    ;
+    
+addop
+    : '+' 
+    | '-'
+    ;
+    
+mulop
+    : '*' 
+    | '/'
+    ;
+    
+if_stmt
+    : 'IF' '(' 
+    
+op
+    : ':='
+    | '+'
+    | '-'
+    | '*'
+    | '/'
+    | '='
+    | '!='
+    | '<'
+    | '>'
+    | '('
+    | ')'
+    | ';'
+    | ','
+    | '<='
+    | '>='
     ;
