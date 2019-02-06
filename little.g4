@@ -1,22 +1,18 @@
 grammar little;
 
-tokens
+WS: [ \t]+ -> skip;
 
-CAPS
-    : ('A' .. 'Z')+
-    ;
-    
 program
     : 'PROGRAM' id 'BEGIN' pgm_body 'END'
+    ;
+    
+NEWLINE
+    : [\r\n]
     ;
     
 id
     : IDENTIFIER
     ;
-
-IDENTIFIER
-   : ('a' .. 'z' | 'A' .. 'Z')+
-   ;
     
 pgm_body
     : decl func_declarations
@@ -47,7 +43,7 @@ var_type
     
 any_type
     : var_type
-    | VOID
+    | 'VOID'
     ;
     
 id_list
@@ -79,7 +75,7 @@ func_declarations
     ;
     
 func_decl
-    : FUNCTION any_type id (param_decl_list) BEGIN func_body END
+    : 'FUNCTION' any_type id (param_decl_list) 'BEGIN' func_body 'END'
     ;
     
 func_body
@@ -113,15 +109,15 @@ assign_expr
     ;
     
 read_stmt
-    : READ ( id_list );
+    : 'READ' '(' id_list ')' ';'
     ;
     
 write_stmt
-    : WRITE ( id_list );
+    : 'WRITE' '(' id_list ')'';'
     ;
 
 return_stmt
-    : RETURN expr ';'
+    : 'RETURN' expr ';'
     ;
     
 expr
@@ -179,7 +175,47 @@ mulop
     ;
     
 if_stmt
-    : 'IF' '(' 
+    : 'IF' '(' cond ')' decl stmt_list else_part 'ENDIF'
+    ;
+    
+else_part
+    : 'ELSE' decl stmt_list
+    | 
+    ;
+    
+cond
+    : expr compop expr
+    ;
+    
+compop
+    : '<'
+    | '>'
+    | '='
+    | '!='
+    | '<='
+    | '>='
+    ;
+    
+while_stmt
+    : 'WHILE' '(' cond ')' decl stmt_list 'ENDWHILE'
+    ;
+    
+INTLITERAL
+    : ('0'..'9')+
+    ;
+    
+FLOATLITERAL
+    : '.'('0'..'9')+
+    | ('0'..'9')+'.'('0'..'9')+
+    ;
+    
+STRINGLITERAL
+    : '"'(('A'..'z')|('0'..'9'))*'"'
+    ;
+    
+IDENTIFIER
+   : ('a' .. 'z' | 'A' .. 'Z')+
+   ;
     
 op
     : ':='
