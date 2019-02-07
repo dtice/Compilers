@@ -1,0 +1,1 @@
+SET CLASSPATH=.;C:\Javalib\antlr-4.7.1-complete.jar;.;C:\Javalib\antlr-4.7.2-complete.jar;%CLASSPATH% 

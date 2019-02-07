@@ -1,7 +1,5 @@
 grammar little;
 
-WS: [ \t]+ -> skip;
-
 program
     : 'PROGRAM' id 'BEGIN' pgm_body 'END'
     ;
@@ -193,7 +191,7 @@ compop
     ;
     
 while_stmt
-    : WHILE ( cond ) decl stmt_list ENDWHILE
+    : 'WHILE' ( cond ) decl stmt_list 'ENDWHILE'
     ;
     
 IDENTIFIER
@@ -256,3 +254,4 @@ OPERATOR
     | '>='
     ;
     
+WS: [ \t\n\r]+ -> skip;
