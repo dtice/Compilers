@@ -7,66 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52686a78-737c-424c-9aab-fe3fde8c4cb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Compilers_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/little.g4" beforeDir="false" afterPath="$PROJECT_DIR$/little.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/little.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/little.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleBaseListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/littleBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleLexer.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/fail.micro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/step2_src/com/company/littleListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Compilers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Compilers.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/littleLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/littleLexer.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/littleLexer.interp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/littleLexer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/littleLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/littleListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$AddopContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Any_typeContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Assign_exprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Assign_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Base_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Call_exprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$CompopContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$CondContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$DeclContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Else_partContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$ExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Expr_listContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Expr_list_tailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Expr_prefixContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$FactorContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Factor_prefixContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Func_bodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Func_declContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Func_declarationsContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$IdContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Id_listContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Id_tailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$If_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$MulopContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$OpContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Param_declContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Param_decl_listContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Param_decl_tailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Pgm_bodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Postfix_exprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$PrimaryContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$ProgramContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Read_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Return_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$StmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Stmt_listContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$StrContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$String_declContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Var_declContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Var_typeContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$While_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser$Write_stmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/littleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/littleParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/littleParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/littleParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/little_tokens.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loop.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Compilers_jar/Compilers.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Compilers/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compilers/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Compilers.jar" beforeDir="false" afterPath="$PROJECT_DIR$/test/Compilers.jar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,10 +40,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+        <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="435">
+              <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,10 +52,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/littleLexer.java">
+        <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="20" selection-start-column="20" selection-end-column="20" />
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -124,6 +79,16 @@
         <option value="$PROJECT_DIR$/littleLexer.java" />
         <option value="$PROJECT_DIR$/src/com/company/littleLexer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/step2_src/littleWrapper.java" />
+        <option value="$PROJECT_DIR$/step2_src/littleParserParser.java" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleParserParser.java" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleParserBaseListener.java" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleParserLexer.java" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleParserListener.java" />
+        <option value="$PROJECT_DIR$/step2_src/inputs/fail.micro" />
+        <option value="$PROJECT_DIR$/inputs/fail.micro" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleListener.java" />
+        <option value="$PROJECT_DIR$/step2_src/com/company/littleWrapper.java" />
       </list>
     </option>
   </component>
@@ -148,47 +113,17 @@
             <path>
               <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="inputs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="step2_src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compilers" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compilers" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="step2_src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -200,14 +135,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549675997366" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551398588385" />
     <property name="last_opened_file_path" value="C:/Javalib/antlr-4.7.2-complete.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.20574713" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.company" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DillT\Documents\Programming\Compilers\step2_src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\DillT\Documents\Programming\Compilers\inputs" />
+      <recent name="C:\Users\DillT\Documents\Programming\Compilers\step2_src" />
       <recent name="C:\Users\DillT\Documents\Programming\Compilers\out\production\Compilers\com\company" />
       <recent name="C:\Users\DillT\Documents\Programming\Compilers\src\com" />
       <recent name="C:\Users\DillT\Documents\Programming\Compilers\src" />
@@ -225,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.littleWrapper">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="Compilers" />
@@ -239,8 +182,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="littleWrapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.littleWrapper" />
+      <module name="Compilers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.littleWrapper" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -262,7 +219,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -280,7 +237,6 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32936078" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -289,6 +245,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.32995737" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -313,6 +270,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/littleLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -320,10 +287,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleParserParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        <state relative-caret-position="-23293">
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleParserBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleParserListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleParserLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/inputs/loop.micro">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputs/fail.micro">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/step2_src/com/company/littleWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
