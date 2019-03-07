@@ -1,13 +1,12 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Stack;
 
 public class littleListener extends littleParserBaseListener {
     // TODO:
-    HashMap<String,String> currentSymbolTable;
-    Stack<HashMap<String,String>> symbolTables;
+    LinkedHashMap<String,String> currentSymbolTable;
+    Stack<LinkedHashMap<String,String>> symbolTables;
     Stack<String> symbolTableNames;
     int blockNum;
 
@@ -26,7 +25,6 @@ public class littleListener extends littleParserBaseListener {
     @Override
     public void enterIf_stmt(littleParserParser.If_stmtContext ctx){
         // Create symbol table
-        // System.out.println(ctx.getText());
         createBlockSymbolTable();
     }
 
@@ -51,18 +49,15 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void enterString_decl(littleParserParser.String_declContext ctx){
-        //this.currentSymbolTable.add("name " + ctx.id().getText() + " type " + ctx.children.get(0).getText() + " value " + ctx.str().getText());
         insertSymbolTableStr(ctx.id().getText(), ctx.children.get(0).getText(), ctx.str().getText());
     }
 
     @Override
     public void enterVar_decl(littleParserParser.Var_declContext ctx){
         String varType = ctx.var_type().getText();
-        //currentSymbolTable.add("name "+ctx.id_list().id().getText()+" type "+varType);
         insertSymbolTableVar(ctx.id_list().id().getText(), varType);
         littleParserParser.Id_tailContext idlctx = ctx.id_list().id_tail();
         while(idlctx.id() != null){
-            //currentSymbolTable.add("name " + idlctx.id().getText() + " type " + varType);
             insertSymbolTableVar(idlctx.id().getText(), varType);
             idlctx = idlctx.id_tail();
         }
@@ -73,13 +68,11 @@ public class littleListener extends littleParserBaseListener {
         if(ctx.param_decl() != null) {
             String varType = ctx.param_decl().var_type().getText();
             String name = ctx.param_decl().id().getText();
-            //currentSymbolTable.add("name " + name + " type " + varType);
             insertSymbolTableVar(name, varType);
             littleParserParser.Param_decl_tailContext pdtctx = ctx.param_decl_tail();
             while (pdtctx.param_decl() != null) {
                 varType = pdtctx.param_decl().var_type().getText();
                 name = pdtctx.param_decl().id().getText();
-                //currentSymbolTable.add("name " + name + " type " + varType);
                 insertSymbolTableVar(name, varType);
                 pdtctx = pdtctx.param_decl_tail();
             }
@@ -105,7 +98,7 @@ public class littleListener extends littleParserBaseListener {
     }
 
     private void createSymbolTable(String name){
-        this.symbolTables.push(new HashMap<>());
+        this.symbolTables.push(new LinkedHashMap<>());
         this.symbolTableNames.push(name);
         this.currentSymbolTable = symbolTables.peek();
     }
@@ -118,10 +111,13 @@ public class littleListener extends littleParserBaseListener {
     }
 
     public void printSymbolTables(){
-        //System.out.println(symbolTables.toString());
         Stack<String> tempStack = new Stack<>();
         while(!this.symbolTables.empty()){
-            symbolTables.pop().forEach((k,v)-> tempStack.push("name "+k+" "+v));
+            Stack<String> tempStack2 = new Stack<>();
+            symbolTables.pop().forEach((k,v)-> tempStack2.push("name "+k+" "+v));
+            while(!tempStack2.empty()){
+                tempStack.push(tempStack2.pop());
+            }
             tempStack.push("Symbol table " + symbolTableNames.pop());
             tempStack.push("\n");
         }
