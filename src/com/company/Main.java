@@ -16,8 +16,11 @@ public class Main {
         listener.printSymbolTables();
     }
     public static void main(String[] args){
-        if(args.length != 1){
-            System.out.println("Incorrect number of arguments provided");
+        if(args.length < 1){
+            Scanner in = new Scanner(System.in);
+            System.out.println("What is the path to your input file? > ");
+            String input = in.nextLine();
+            old_main(input);
         } else {
             old_main(args[0]);
         }
