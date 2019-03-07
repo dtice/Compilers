@@ -6,10 +6,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
-        System.out.println("What is the path to the Little source file? > ");
-        Scanner s = new Scanner(System.in);
-        String input = s.nextLine();
+    public static void old_main(String input){
         littleWrapper lw = new littleWrapper(input);
         ParseTree tree = lw.lpp.program();
         littleListener listener = new littleListener();
@@ -17,5 +14,12 @@ public class Main {
         lw.lpl.removeErrorListeners();
         walker.walk(listener,tree);
         listener.printSymbolTables();
+    }
+    public static void main(String[] args){
+        if(args.length != 1){
+            System.out.println("Incorrect number of arguments provided");
+        } else {
+            old_main(args[0]);
+        }
     }
 }

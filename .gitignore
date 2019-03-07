@@ -1,3 +1,5 @@
-.idea/
+test/*
+antlr/*
+.idea/*
 *.class
 *.iml
