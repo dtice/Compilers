@@ -12,8 +12,16 @@ public class Main {
         littleListener listener = new littleListener();
         ParseTreeWalker walker = new ParseTreeWalker();
         lw.lpl.removeErrorListeners();
+        // Parse input
         walker.walk(listener,tree);
+
+        // Print Symbol Tables
         listener.printSymbolTables();
+
+        // Generate and print AST
+        AST ast = listener.generateAST();
+
+        // Traverse AST to generate code
     }
     public static void main(String[] args){
         if(args.length < 1){

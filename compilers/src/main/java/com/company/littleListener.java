@@ -3,12 +3,17 @@ package com.company;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
+
 public class littleListener extends littleParserBaseListener {
-    // TODO:
+    // Symbol Table initialization
     LinkedHashMap<String,String> currentSymbolTable;
     Stack<LinkedHashMap<String,String>> symbolTables;
     Stack<String> symbolTableNames;
     int blockNum;
+
+    // AST/Semantic Stack initialization
+    AST ast;
+    Stack<ASTNode> semanticStack = new Stack<>();
 
     public littleListener(){
         this.symbolTables = new Stack<>();
@@ -16,6 +21,27 @@ public class littleListener extends littleParserBaseListener {
         this.blockNum = 1;
     }
 
+    @Override
+    public void enterAddop(littleParserParser.AddopContext ctx) {
+        ASTNode addopNode = new ASTNode("AddExpr");
+        addopNode.value = ctx.getText();
+        this.semanticStack.push(addopNode);
+    }
+
+    @Override
+    public void enterMulop(littleParserParser.MulopContext ctx) {
+        ASTNode mulopNode = new ASTNode("MulExpr");
+        mulopNode.value = ctx.getText();
+        this.semanticStack.push(mulopNode);
+    }
+
+    @Override
+    public void enterId(littleParserParser.IdContext ctx){
+        ASTNode primaryNode = new ASTNode("VarRef");
+        primaryNode.value = ctx.IDENTIFIER().getText();
+        this.semanticStack.push(primaryNode);
+    }
+    
     @Override
     public void enterPgm_body(littleParserParser.Pgm_bodyContext ctx){
         // Create symbol table
@@ -124,5 +150,15 @@ public class littleListener extends littleParserBaseListener {
         while(!tempStack.empty()){
             System.out.println(tempStack.pop());
         }
+    }
+
+    public AST generateAST(){
+        ASTNode curNode = this.semanticStack.pop();
+        while(curNode != null){
+            System.out.println(curNode.type + ": " + curNode.value);
+            if(this.semanticStack.size() == 0) break;
+            curNode = this.semanticStack.pop();
+        }
+        return this.ast;
     }
 }

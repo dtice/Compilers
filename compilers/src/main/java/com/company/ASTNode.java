@@ -1,15 +1,20 @@
 package com.company;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ASTNode {
-    String name;
-    ArrayList<ASTNode> children = new ArrayList<>();
-    public ASTNode(String name){
-        this.name = name;
+    String type;
+    HashMap<String, ASTNode> children = new HashMap<>();
+    String value;
+    public ASTNode(String type){
+        this.type = type;
     }
 
     public void addChild(ASTNode child){
-        children.add(child);
+        children.put(child.type, child);
+    }
+    @Override
+    public String toString(){
+        return this.type;
     }
 }
