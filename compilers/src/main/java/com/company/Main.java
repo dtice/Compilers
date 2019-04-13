@@ -1,9 +1,9 @@
 package com.company;
 
+import java.util.Scanner;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
-import java.util.Scanner;
 
 public class Main {
     public static void old_main(String input){
@@ -20,6 +20,7 @@ public class Main {
             Scanner in = new Scanner(System.in);
             System.out.println("What is the path to your input file? > ");
             String input = in.nextLine();
+            in.close();
             old_main(input);
         } else {
             old_main(args[0]);
