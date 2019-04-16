@@ -11,8 +11,8 @@ public class littleListener extends littleParserBaseListener {
     Stack<String> symbolTableNames;
     int blockNum;
 
-    // AST/Semantic Stack initialization
-    AST ast;
+    // // AST/Semantic Stack initialization
+    // AST ast;
     Stack<ASTNode> semanticStack = new Stack<>();
 
     public littleListener(){
@@ -23,23 +23,29 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void enterAddop(littleParserParser.AddopContext ctx) {
-        ASTNode addopNode = new ASTNode("AddExpr");
-        addopNode.value = ctx.getText();
-        this.semanticStack.push(addopNode);
+        semanticStack.push(new AddExprNode(ctx.getText()));    
     }
 
     @Override
     public void enterMulop(littleParserParser.MulopContext ctx) {
-        ASTNode mulopNode = new ASTNode("MulExpr");
-        mulopNode.value = ctx.getText();
-        this.semanticStack.push(mulopNode);
+        semanticStack.push(new MulExprNode(ctx.getText()));
     }
 
     @Override
-    public void enterId(littleParserParser.IdContext ctx){
-        ASTNode primaryNode = new ASTNode("VarRef");
-        primaryNode.value = ctx.IDENTIFIER().getText();
-        this.semanticStack.push(primaryNode);
+    public void enterExpr_prefix(littleParserParser.Expr_prefixContext ctx){
+       System.out.println("Expr_prefix "+ctx.getText());
+    }
+
+    @Override
+    public void enterFactor(littleParserParser.FactorContext ctx){
+        if(ctx.factor_prefix().getChildCount() == 0){
+            semanticStack.push(new ASTNode(ctx.postfix_expr().getText()));
+        }
+    }
+
+    @Override
+    public void enterFactor_prefix(littleParserParser.Factor_prefixContext ctx){
+        
     }
     
     @Override
@@ -152,13 +158,11 @@ public class littleListener extends littleParserBaseListener {
         }
     }
 
-    public AST generateAST(){
-        ASTNode curNode = this.semanticStack.pop();
-        while(curNode != null){
-            System.out.println(curNode.type + ": " + curNode.value);
-            if(this.semanticStack.size() == 0) break;
-            curNode = this.semanticStack.pop();
+    public String generateTinyCode(){
+        String code = ";IR code";
+        while(!semanticStack.isEmpty()){
+            code += semanticStack.pop().toString() + '\n';
         }
-        return this.ast;
+        return code;
     }
 }

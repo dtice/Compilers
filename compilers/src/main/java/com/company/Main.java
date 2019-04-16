@@ -1,12 +1,15 @@
 package com.company;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class Main {
-    public static void old_main(String input){
+    public static void old_main(String input) throws IOException{
         littleWrapper lw = new littleWrapper(input);
         ParseTree tree = lw.lpp.program();
         littleListener listener = new littleListener();
@@ -19,9 +22,13 @@ public class Main {
         listener.printSymbolTables();
 
         // Generate and print AST
-        AST ast = listener.generateAST();
+        String generatedCode = listener.generateTinyCode();
 
-        // Traverse AST to generate code
+        String[] filePath = input.split("/");
+        String fileName = filePath[filePath.length - 1].replace(".micro", ".out");
+        BufferedWriter bw = new BufferedWriter(new FileWriter("test_out/"+fileName));
+        bw.write(generatedCode);
+        bw.close();
     }
     public static void main(String[] args){
         if(args.length < 1){
@@ -29,9 +36,17 @@ public class Main {
             System.out.println("What is the path to your input file? > ");
             String input = in.nextLine();
             in.close();
-            old_main(input);
+            try{
+                old_main(input);
+            } catch(IOException e){
+                System.out.println("Error: file not found");
+            }
         } else {
-            old_main(args[0]);
+            try{
+                old_main(args[0]);
+            } catch(IOException e){
+                System.out.println("Error: file not found");
+            }
         }
     }
 }
