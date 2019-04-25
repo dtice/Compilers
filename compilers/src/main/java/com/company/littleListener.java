@@ -3,11 +3,6 @@ package com.company;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
-import com.company.littleParserParser.Any_typeContext;
-import com.company.littleParserParser.Call_exprContext;
-import com.company.littleParserParser.Expr_prefixContext;
-import com.company.littleParserParser.Postfix_exprContext;
-import com.company.littleParserParser.Read_stmtContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -30,7 +25,7 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
-    public void exitExpr_prefix(Expr_prefixContext ctx) {
+    public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
         // if(!semanticStack.empty()) semanticStack.forEach(n -> System.out.println(n.toString()));
 
         if(ctx.addop() != null){
