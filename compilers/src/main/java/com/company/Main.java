@@ -31,7 +31,15 @@ public class Main {
         bw.close();
     }
     public static void main(String[] args){
-        if(args.length < 1){
+        String debug_input = "input/test_combination.micro";
+        if(!debug_input.isEmpty()){
+            try{
+                old_main(debug_input);
+            } catch(IOException e){
+                System.out.println("Error: file not found");
+            }
+        }
+        else if(args.length < 1){
             Scanner in = new Scanner(System.in);
             System.out.println("What is the path to your input file? > ");
             String input = in.nextLine();
@@ -41,7 +49,8 @@ public class Main {
             } catch(IOException e){
                 System.out.println("Error: file not found");
             }
-        } else {
+        } 
+        else {
             try{
                 old_main(args[0]);
             } catch(IOException e){

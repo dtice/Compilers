@@ -6,6 +6,5 @@ public class AST {
         this.root = root;
     }
     public void print(){
-        //TODO: recursively print AST
     }
 }

@@ -3,6 +3,14 @@ package com.company;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
+import com.company.littleParserParser.Any_typeContext;
+import com.company.littleParserParser.Call_exprContext;
+import com.company.littleParserParser.Expr_prefixContext;
+import com.company.littleParserParser.Postfix_exprContext;
+import com.company.littleParserParser.Read_stmtContext;
+
+import org.antlr.v4.runtime.ParserRuleContext;
+
 
 public class littleListener extends littleParserBaseListener {
     // Symbol Table initialization
@@ -22,30 +30,54 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
-    public void enterAddop(littleParserParser.AddopContext ctx) {
-        semanticStack.push(new AddExprNode(ctx.getText()));    
-    }
+    public void exitExpr_prefix(Expr_prefixContext ctx) {
+        // if(!semanticStack.empty()) semanticStack.forEach(n -> System.out.println(n.toString()));
 
-    @Override
-    public void enterMulop(littleParserParser.MulopContext ctx) {
-        semanticStack.push(new MulExprNode(ctx.getText()));
-    }
-
-    @Override
-    public void enterExpr_prefix(littleParserParser.Expr_prefixContext ctx){
-       System.out.println("Expr_prefix "+ctx.getText());
-    }
-
-    @Override
-    public void enterFactor(littleParserParser.FactorContext ctx){
-        if(ctx.factor_prefix().getChildCount() == 0){
-            semanticStack.push(new ASTNode(ctx.postfix_expr().getText()));
+        if(ctx.addop() != null){
+            AddExprNode aen = new AddExprNode(ctx.addop().getText());
+            if(ctx.expr_prefix().getText() == ""){
+                VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                aen.addLeftChild(vrn);
+            }
+            else {
+                VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                BinaryOpNode an = (BinaryOpNode)semanticStack.pop();
+                an.addRightChild(vrn);
+                aen.addLeftChild(an);
+            }
+            semanticStack.push(aen);
         }
     }
 
     @Override
-    public void enterFactor_prefix(littleParserParser.Factor_prefixContext ctx){
-        
+    public void enterPostfix_expr(littleParserParser.Postfix_exprContext ctx){
+        if(ctx.primary() != null){
+            if(ctx.primary().id() != null){
+                VarRefNode vrn = new VarRefNode();
+                vrn.setValue(ctx.primary().id().getText());
+                semanticStack.push(vrn);
+            }
+        }
+    }
+
+    @Override
+    public void exitFactor_prefix(littleParserParser.Factor_prefixContext ctx){
+        if(ctx != null){
+            if(ctx.mulop() != null){
+                MulExprNode men = new MulExprNode(ctx.mulop().getText());
+                if(ctx.factor_prefix().getText() == ""){
+                    VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                    men.addLeftChild(vrn);
+                }
+                else{
+                    VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                    BinaryOpNode mn = (BinaryOpNode)semanticStack.pop();
+                    mn.addRightChild(vrn);
+                    men.addLeftChild(mn);
+                }
+                semanticStack.push(men);
+            }
+        }
     }
     
     @Override
@@ -92,6 +124,17 @@ public class littleListener extends littleParserBaseListener {
         while(idlctx.id() != null){
             insertSymbolTableVar(idlctx.id().getText(), varType);
             idlctx = idlctx.id_tail();
+        }
+    }
+
+    @Override
+    public void enterEveryRule(ParserRuleContext ctx) {
+        if(!semanticStack.empty()){
+            System.out.println("---------------");
+            System.out.println("Rule: " + littleParserParser.ruleNames[ctx.getRuleIndex()]);
+            System.out.println("-----Stack-----");
+            semanticStack.forEach(n -> System.out.println(n.toString()));
+            System.out.println("---------------");
         }
     }
 
@@ -159,7 +202,7 @@ public class littleListener extends littleParserBaseListener {
     }
 
     public String generateTinyCode(){
-        String code = ";IR code";
+        String code = ";IR code\n";
         while(!semanticStack.isEmpty()){
             code += semanticStack.pop().toString() + '\n';
         }

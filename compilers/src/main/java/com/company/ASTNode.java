@@ -1,28 +1,52 @@
 package com.company;
 
-import java.util.HashMap;
+class FactorNode extends ASTNode{
+    FactorPrefixNode fpn;
+    PostFixExprNode pfen;
+    FactorNode(){
+        super("Factor");
+    }
+}
+
+class FactorPrefixNode extends ASTNode{
+    FactorPrefixNode fpn;
+    PostFixExprNode pfen;
+    MulExprNode men;
+    FactorPrefixNode(){
+        super("FactorPrefix");
+    }
+}
 
 class ExprPrefixNode extends ASTNode {
-    ASTNode exprPrefix;
-    ASTNode factor;
-    ASTNode addOp;
+    ExprPrefixNode epn;
+    FactorNode fn;
+    AddExprNode aen;
+    ExprPrefixNode(){
+        super("ExprPrefix");
+    }
+}
 
-    public ExprPrefixNode(String type) {
-        super(type);
+class PostFixExprNode extends ASTNode {
+
+}
+
+class VarRefNode extends ASTNode {
+    private String type;
+    VarRefNode(){
+        super("VarRef");
     }
 
-    public void addChild(String type, ASTNode child){
-        switch(type){
-            case "exprPrefix":
-                this.exprPrefix = child;
-                break;
-            case "factor":
-                this.factor = child;
-                break;
-            case "addExpr":
-                this.addOp = child;
-                break;
-        }
+    public void setType(String type){
+        this.type = type;
+    }
+
+    public String getType(){
+        return this.type;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("(%s, %s, %s)", this.name, this.value, this.type);
     }
 }
 
@@ -30,22 +54,21 @@ class MulExprNode extends BinaryOpNode {
     MulExprNode(String op){
         super("MulExpr", op);
     }
-    @Override
-    public String toString(){
-        return this.operator;
-    }
+    // @Override
+    // public String toString(){
+    //     return String.format("(MulExpr, %s)", this.operator);
+    // }
 }
 
 class AddExprNode extends BinaryOpNode {
     AddExprNode(String op){
         super("AddExpr", op);
     }
-    @Override
-    public String toString(){
-        // return this.leftChild.toString() + this.operator + this.rightChild.toString();
-        return this.operator;
-    }
-    
+
+    // @Override
+    // public String toString(){
+    //     return String.format("(AddExpr, %s)", this.operator);
+    // }
 }
 
 class BinaryOpNode extends ASTNode {
@@ -56,6 +79,8 @@ class BinaryOpNode extends ASTNode {
     public BinaryOpNode(String name, String operator){
         super(name);
         this.operator = operator;
+        this.leftChild = new ASTNode();
+        this.rightChild = new ASTNode();
     }
 
     public void addLeftChild(ASTNode node){
@@ -65,17 +90,33 @@ class BinaryOpNode extends ASTNode {
     public void addRightChild(ASTNode node){
         this.rightChild = node;
     }
+
+    @Override
+    public String toString(){
+        return String.format("(Op: %s, lChild: %s, rChild: %s)", this.operator, this.leftChild.toString(), this.rightChild.toString());
+    }
 }
 
 public class ASTNode {
-    String name;
-    String value;
+    protected String name;
+    protected String value;
+
+    public ASTNode(){}
+
     public ASTNode(String name){
         this.name = name;
     }
 
     @Override
     public String toString(){
-        return this.name;
+        return String.format("(%s, %s)", this.name, this.value);
+    }
+
+    public void setValue(String value){
+        this.value = value;
+    }
+
+    public String getValue(){
+        return this.value;
     }
 }
