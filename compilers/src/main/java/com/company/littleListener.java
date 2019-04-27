@@ -25,19 +25,40 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void exitExpr(littleParserParser.ExprContext ctx){
-        
+        if(semanticStack.size() > 1){
+            ASTNode a = semanticStack.pop();
+            ASTNode b = semanticStack.pop();
+            if(b instanceof BinaryOpNode){
+                BinaryOpNode b0 = (BinaryOpNode)b;
+                b0.addRightChild(a);
+                semanticStack.push(b0);
+            }
+        }
+    }
+
+    @Override
+    public void exitFactor(littleParserParser.FactorContext ctx){
+        if(semanticStack.size() > 1){
+            ASTNode a = semanticStack.pop();
+            ASTNode b = semanticStack.pop();
+            if(b instanceof BinaryOpNode){
+                BinaryOpNode b0 = (BinaryOpNode)b;
+                b0.addRightChild(a);
+                semanticStack.push(b0);
+            }
+        }
     }
 
     @Override
     public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
-        if(ctx.addop() != null){
+        if(ctx.addop() != null && ctx.addop().getText() != "" && semanticStack.size() > 1){
             AddExprNode aen = new AddExprNode(ctx.addop().getText());
             if(ctx.expr_prefix().getText() == ""){
-                VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                ASTNode vrn = semanticStack.pop();
                 aen.addLeftChild(vrn);
             }
             else {
-                VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                ASTNode vrn = semanticStack.pop();
                 BinaryOpNode an = (BinaryOpNode)semanticStack.pop();
                 an.addRightChild(vrn);
                 aen.addLeftChild(an);
@@ -76,11 +97,11 @@ public class littleListener extends littleParserBaseListener {
             if(ctx.mulop() != null){
                 MulExprNode men = new MulExprNode(ctx.mulop().getText());
                 if(ctx.factor_prefix().getText() == ""){
-                    VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                    ASTNode vrn = semanticStack.pop();
                     men.addLeftChild(vrn);
                 }
                 else{
-                    VarRefNode vrn = (VarRefNode)semanticStack.pop();
+                    ASTNode vrn = semanticStack.pop();
                     BinaryOpNode mn = (BinaryOpNode)semanticStack.pop();
                     mn.addRightChild(vrn);
                     men.addLeftChild(mn);
