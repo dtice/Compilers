@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
@@ -143,7 +144,7 @@ public class littleListener extends littleParserBaseListener {
             System.out.println("Rule: " + littleParserParser.ruleNames[ctx.getRuleIndex()]);
             System.out.println("-----Stack-----");
             System.out.println("Printing with forEach:");
-            semanticStack.forEach(n -> n.toString());            
+            semanticStack.forEach(c -> System.out.println(c));
             System.out.println("---------------");
 
         }
