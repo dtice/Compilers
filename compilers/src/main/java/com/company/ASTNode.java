@@ -1,37 +1,14 @@
 package com.company;
 
-class FactorNode extends ASTNode{
-    FactorPrefixNode fpn;
-    PostFixExprNode pfen;
-    FactorNode(){
-        super("Factor");
+class LiteralNode extends VarRefNode {
+    LiteralNode(String type, String value){
+        this.type = type;
+        this.value = value;
     }
-}
-
-class FactorPrefixNode extends ASTNode{
-    FactorPrefixNode fpn;
-    PostFixExprNode pfen;
-    MulExprNode men;
-    FactorPrefixNode(){
-        super("FactorPrefix");
-    }
-}
-
-class ExprPrefixNode extends ASTNode {
-    ExprPrefixNode epn;
-    FactorNode fn;
-    AddExprNode aen;
-    ExprPrefixNode(){
-        super("ExprPrefix");
-    }
-}
-
-class PostFixExprNode extends ASTNode {
-
 }
 
 class VarRefNode extends ASTNode {
-    private String type;
+    protected String type;
     VarRefNode(){
         super("VarRef");
     }
@@ -54,21 +31,12 @@ class MulExprNode extends BinaryOpNode {
     MulExprNode(String op){
         super("MulExpr", op);
     }
-    // @Override
-    // public String toString(){
-    //     return String.format("(MulExpr, %s)", this.operator);
-    // }
 }
 
 class AddExprNode extends BinaryOpNode {
     AddExprNode(String op){
         super("AddExpr", op);
     }
-
-    // @Override
-    // public String toString(){
-    //     return String.format("(AddExpr, %s)", this.operator);
-    // }
 }
 
 class BinaryOpNode extends ASTNode {

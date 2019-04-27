@@ -15,6 +15,7 @@ public class Main {
         littleListener listener = new littleListener();
         ParseTreeWalker walker = new ParseTreeWalker();
         lw.lpl.removeErrorListeners();
+
         // Parse input
         walker.walk(listener,tree);
 
@@ -31,7 +32,7 @@ public class Main {
         bw.close();
     }
     public static void main(String[] args){
-        String debug_input = "input/test_combination.micro";
+        String debug_input = "input/step4_testcase.micro";
         if(!debug_input.isEmpty()){
             try{
                 old_main(debug_input);

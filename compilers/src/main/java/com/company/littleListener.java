@@ -14,8 +14,6 @@ public class littleListener extends littleParserBaseListener {
     Stack<String> symbolTableNames;
     int blockNum;
 
-    // // AST/Semantic Stack initialization
-    // AST ast;
     Stack<ASTNode> semanticStack = new Stack<>();
 
     public littleListener(){
@@ -25,9 +23,12 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
-    public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
-        // if(!semanticStack.empty()) semanticStack.forEach(n -> System.out.println(n.toString()));
+    public void exitExpr(littleParserParser.ExprContext ctx){
+        
+    }
 
+    @Override
+    public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
         if(ctx.addop() != null){
             AddExprNode aen = new AddExprNode(ctx.addop().getText());
             if(ctx.expr_prefix().getText() == ""){
@@ -47,10 +48,23 @@ public class littleListener extends littleParserBaseListener {
     @Override
     public void enterPostfix_expr(littleParserParser.Postfix_exprContext ctx){
         if(ctx.primary() != null){
+            // Var Ref
             if(ctx.primary().id() != null){
                 VarRefNode vrn = new VarRefNode();
                 vrn.setValue(ctx.primary().id().getText());
+                String type = symbolTables.get(0).get(ctx.primary().id().getText());
+                vrn.setType(type);
                 semanticStack.push(vrn);
+            }
+            // Int Literal
+            else if(ctx.primary().INTLITERAL() != null){
+                LiteralNode intLit = new LiteralNode(ctx.primary().INTLITERAL().getText(), "INT");
+                semanticStack.push(intLit);
+            }
+            // Float Literal
+            else if(ctx.primary().FLOATLITERAL() != null){
+                LiteralNode floatLit = new LiteralNode(ctx.primary().FLOATLITERAL().getText(), "FLOAT");
+                semanticStack.push(floatLit);
             }
         }
     }
@@ -123,13 +137,15 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
-    public void enterEveryRule(ParserRuleContext ctx) {
+    public void exitEveryRule(ParserRuleContext ctx) {
         if(!semanticStack.empty()){
             System.out.println("---------------");
             System.out.println("Rule: " + littleParserParser.ruleNames[ctx.getRuleIndex()]);
             System.out.println("-----Stack-----");
-            semanticStack.forEach(n -> System.out.println(n.toString()));
+            System.out.println("Printing with forEach:");
+            semanticStack.forEach(n -> n.toString());            
             System.out.println("---------------");
+
         }
     }
 
@@ -184,7 +200,7 @@ public class littleListener extends littleParserBaseListener {
         Stack<String> tempStack = new Stack<>();
         while(!this.symbolTables.empty()){
             Stack<String> tempStack2 = new Stack<>();
-            symbolTables.pop().forEach((k,v)-> tempStack2.push("name "+k+" "+v));
+            symbolTables.pop().forEach((k,v)-> tempStack2.push("name " + k + " " + v));
             while(!tempStack2.empty()){
                 tempStack.push(tempStack2.pop());
             }
