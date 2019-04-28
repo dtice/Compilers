@@ -240,8 +240,8 @@ public class littleListener extends littleParserBaseListener {
 
     public String generateTinyCode(){
         String code = ";IR code\n";
-        while(!semanticStack.isEmpty()){
-            code += semanticStack.pop().toString() + '\n';
+        while(!exprStack.isEmpty()){
+            code += exprStack.pop().toString() + '\n';
         }
         return code;
     }
