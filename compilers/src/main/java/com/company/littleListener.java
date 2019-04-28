@@ -55,7 +55,7 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
-        if(ctx.addop() != null && ctx.addop().getText() != "" && semanticStack.size() > 1){
+        if(ctx.addop() != null){
             AddExprNode aen = new AddExprNode(ctx.addop().getText());
             if(ctx.expr_prefix().getText() == ""){
                 ASTNode vrn = semanticStack.pop();

@@ -32,7 +32,7 @@ public class Main {
         bw.close();
     }
     public static void main(String[] args){
-        String debug_input = "input/test_combination.micro";
+        String debug_input = "input/test_mult.micro";
         if(!debug_input.isEmpty()){
             try{
                 old_main(debug_input);
