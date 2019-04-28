@@ -16,12 +16,15 @@ public class littleListener extends littleParserBaseListener {
     int blockNum;
 
     Stack<ASTNode> semanticStack = new Stack<>();
+    Stack<ASTNode> exprStack = new Stack<>();
 
     public littleListener(){
         this.symbolTables = new Stack<>();
         this.symbolTableNames = new Stack<>();
         this.blockNum = 1;
     }
+
+
 
     @Override
     public void exitExpr(littleParserParser.ExprContext ctx){
@@ -31,7 +34,8 @@ public class littleListener extends littleParserBaseListener {
             if(b instanceof BinaryOpNode){
                 BinaryOpNode b0 = (BinaryOpNode)b;
                 b0.addRightChild(a);
-                semanticStack.push(b0);
+                //semanticStack.push(b0);
+                exprStack.push(b0);
             }
         }
     }
