@@ -12,6 +12,8 @@ BEGIN
           READ(c, d);
 
           e := a * c + b * d;
+		  b := b*b + a;
+		  a := (b*a)/a;
           
           WRITE(c, newline, d, newline, e, newline);
 

@@ -1,2 +1,7 @@
 ;IR code
-(Op: /, lChild: (Op: /, lChild: (Op: *, lChild: (VarRef, a, type INT), rChild: (Op: +, lChild: (Op: *, lChild: (VarRef, a, type INT), rChild: (VarRef, b, type INT)), rChild: (VarRef, c, type INT))), rChild: (Op: *, lChild: (VarRef, b, type INT), rChild: (VarRef, a, type INT))), rChild: (VarRef, a, type INT))
+(Op: /, lChild: (Op: *, lChild: (VarRef, b, type INT), rChild: (VarRef, a, type INT)), rChild: (VarRef, a, type INT))
+(Op: +, lChild: (Op: *, lChild: (VarRef, b, type INT), rChild: (VarRef, b, type INT)), rChild: (VarRef, a, type INT))
+(Op: /, lChild: (Op: +, lChild: (Op: +, lChild: (VarRef, c, type INT), rChild: (Op: *, lChild: (VarRef, a, type INT), rChild: (VarRef, b, type INT))), rChild: (Op: +, lChild: (Op: *, lChild: (VarRef, a, type INT), rChild: (VarRef, b, type INT)), rChild: (VarRef, c, type INT))), rChild: (VarRef, a, type INT))
+(VarRef, INT, 40)
+(VarRef, INT, 30)
+(VarRef, INT, 20)

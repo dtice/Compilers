@@ -34,9 +34,14 @@ public class littleListener extends littleParserBaseListener {
             if(b instanceof BinaryOpNode){
                 BinaryOpNode b0 = (BinaryOpNode)b;
                 b0.addRightChild(a);
-                //semanticStack.push(b0);
-                exprStack.push(b0);
+                semanticStack.push(b0);
             }
+        }
+        if(littleParserParser.ruleNames[ctx.getParent().getRuleIndex()] == "primary"){
+
+        }
+        else{
+            exprStack.push(semanticStack.pop());
         }
     }
 
@@ -57,10 +62,12 @@ public class littleListener extends littleParserBaseListener {
     public void exitExpr_prefix(littleParserParser.Expr_prefixContext ctx) {
         if(ctx.addop() != null){
             AddExprNode aen = new AddExprNode(ctx.addop().getText());
+            // When expr_prefix is null
             if(ctx.expr_prefix().getText() == ""){
                 ASTNode vrn = semanticStack.pop();
                 aen.addLeftChild(vrn);
             }
+            // When expr_prefix is not null
             else {
                 ASTNode vrn = semanticStack.pop();
                 BinaryOpNode an = (BinaryOpNode)semanticStack.pop();
@@ -84,6 +91,7 @@ public class littleListener extends littleParserBaseListener {
             }
             // Int Literal
             else if(ctx.primary().INTLITERAL() != null){
+                System.out.println(ctx.primary().INTLITERAL().getText() + "INSIDE INT LITERAL");
                 LiteralNode intLit = new LiteralNode(ctx.primary().INTLITERAL().getText(), "INT");
                 semanticStack.push(intLit);
             }
@@ -164,15 +172,14 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void exitEveryRule(ParserRuleContext ctx) {
-        if(!semanticStack.empty()){
-            System.out.println("---------------");
-            System.out.println("Rule: " + littleParserParser.ruleNames[ctx.getRuleIndex()]);
-            System.out.println("-----Stack-----");
-            System.out.println("Printing with forEach:");
-            semanticStack.forEach(c -> System.out.println(c));
-            System.out.println("---------------");
-
-        }
+        // if(!semanticStack.empty()){
+        //     System.out.println("---------------");
+        //     System.out.println("Rule: " + littleParserParser.ruleNames[ctx.getRuleIndex()]);
+        //     System.out.println("-----Stack-----");
+        //     System.out.println("Printing with forEach:");
+        //     semanticStack.forEach(c -> System.out.println(c));
+        //     System.out.println("---------------");
+        // }
     }
 
     @Override
