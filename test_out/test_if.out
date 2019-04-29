@@ -1,11 +1,9 @@
 ;IR code
 (Op: -, lChild: (VarRef, num, type INT), rChild: (VarRef, a, type INT))
 (Op: +, lChild: (VarRef, num, type INT), rChild: (VarRef, a, type INT))
-(VarRef, INT, 3)
-(VarRef, i, type INT)
+(Op: <, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 3))
 (Op: +, lChild: (VarRef, num, type INT), rChild: (VarRef, a, type INT))
-(VarRef, INT, 5)
-(VarRef, i, type INT)
+(Op: <, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 5))
 (VarRef, INT, 42)
 (VarRef, INT, 2)
 (VarRef, INT, 7)
