@@ -1,0 +1,10 @@
+;IR code
+(Op: -, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 1))
+(VarRef, newapprox, type FLOAT)
+(Op: +, lChild: (Op: *, lChild: (VarRef, FLOAT, 0.5), rChild: (VarRef, approx, type FLOAT)), rChild: (Op: /, lChild: (VarRef, num, type FLOAT), rChild: (VarRef, approx, type FLOAT)))
+(VarRef, INT, 0)
+(VarRef, i, type INT)
+(VarRef, num, type FLOAT)
+(VarRef, INT, 1)
+(VarRef, INT, 100)
+(VarRef, FLOAT, 7.0)

@@ -1,5 +1,13 @@
 package com.company;
 
+class IfNode extends ASTNode {
+    BinaryOpNode conditional;
+    ASTNode stmt_list;
+    ASTNode else_part;
+    
+    IfNode(){}
+}
+
 class LiteralNode extends VarRefNode {
     LiteralNode(String type, String value){
         this.type = type;

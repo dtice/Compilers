@@ -24,7 +24,12 @@ public class littleListener extends littleParserBaseListener {
         this.blockNum = 1;
     }
 
-
+    @Override
+    public void exitCond(littleParserParser.CondContext ctx){
+        ASTNode a = semanticStack.pop();
+        ASTNode b = semanticStack.pop();
+        BinaryOpNode cond = new BinaryOpNode();
+    }
 
     @Override
     public void exitExpr(littleParserParser.ExprContext ctx){
@@ -70,7 +75,11 @@ public class littleListener extends littleParserBaseListener {
             // When expr_prefix is not null
             else {
                 ASTNode vrn = semanticStack.pop();
+                System.out.println("VRN Print");
+                System.out.println(vrn);
                 BinaryOpNode an = (BinaryOpNode)semanticStack.pop();
+                System.out.println("AN Print");
+                System.out.println(an);
                 an.addRightChild(vrn);
                 aen.addLeftChild(an);
             }
@@ -80,8 +89,11 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void enterPostfix_expr(littleParserParser.Postfix_exprContext ctx){
+        // System.out.println(ctx.getText());
+        // System.out.println("--------");
         if(ctx.primary() != null){
             // Var Ref
+            // System.out.println(ctx.primary().getText());
             if(ctx.primary().id() != null){
                 VarRefNode vrn = new VarRefNode();
                 vrn.setValue(ctx.primary().id().getText());
@@ -91,7 +103,6 @@ public class littleListener extends littleParserBaseListener {
             }
             // Int Literal
             else if(ctx.primary().INTLITERAL() != null){
-                System.out.println(ctx.primary().INTLITERAL().getText() + "INSIDE INT LITERAL");
                 LiteralNode intLit = new LiteralNode(ctx.primary().INTLITERAL().getText(), "INT");
                 semanticStack.push(intLit);
             }
