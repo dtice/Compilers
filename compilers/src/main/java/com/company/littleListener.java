@@ -18,6 +18,7 @@ public class littleListener extends littleParserBaseListener {
 
     Stack<ASTNode> semanticStack = new Stack<>();
     Stack<ASTNode> exprStack = new Stack<>();
+    Stack<ASTNode> orderedExprStack = new Stack<>();
 
     public littleListener(){
         this.symbolTables = new Stack<>();
@@ -286,7 +287,10 @@ public class littleListener extends littleParserBaseListener {
     public String generateTinyCode(){
         String code = ";IR code\n";
         while(!exprStack.isEmpty()){
-            code += exprStack.pop().toString() + '\n';
+            orderedExprStack.push(exprStack.pop());
+        }
+        while(!orderedExprStack.isEmpty()){
+            code += orderedExprStack.pop().toString() + '\n';
         }
         return code;
     }
