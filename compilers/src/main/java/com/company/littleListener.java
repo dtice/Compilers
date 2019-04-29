@@ -30,6 +30,7 @@ public class littleListener extends littleParserBaseListener {
         BinaryOpNode equal = new BinaryOpNode(null, ":=");
         equal.addRightChild(exprStack.pop());
         equal.addLeftChild(new ASTNode(ctx.id().getText()));
+        exprStack.push(equal);
     }
 
     @Override
