@@ -284,6 +284,23 @@ public class littleListener extends littleParserBaseListener {
         }
     }
 
+    void printPostorder(ASTNode node) { 
+        if (node == null) 
+                return; 
+        if(node instanceof BinaryOpNode){
+            BinaryOpNode bnode = (BinaryOpNode)node;
+            
+            // first recur on left subtree 
+            printPostorder(bnode.leftChild); 
+            
+            // then recur on right subtree 
+            printPostorder(bnode.rightChild); 
+            
+            // now deal with the node 
+            System.out.print(bnode.name + " "); 
+        }
+    }
+
     public String generateTinyCode(){
         String code = ";IR code\n";
         while(!exprStack.isEmpty()){
