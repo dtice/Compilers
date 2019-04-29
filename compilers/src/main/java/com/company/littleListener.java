@@ -26,7 +26,7 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void exitIf_stmt(littleParserParser.If_stmtContext ctx){
-        exprStack.push(new IfNode());
+        //exprStack.push(new IfNode());
     }
 
     @Override
@@ -153,6 +153,7 @@ public class littleListener extends littleParserBaseListener {
     @Override
     public void enterIf_stmt(littleParserParser.If_stmtContext ctx){
         // Create symbol table
+        exprStack.push(new IfNode());
         createBlockSymbolTable();
     }
 
