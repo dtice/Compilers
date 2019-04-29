@@ -1,5 +1,9 @@
 ;IR code
+(EndIf node, null)
 (Op: -, lChild: (VarRef, num, type INT), rChild: (VarRef, a, type INT))
+(Else Node, null)
+(EndIf node, null)
+(Else Node, null)
 (Op: +, lChild: (VarRef, num, type INT), rChild: (VarRef, a, type INT))
 (Op: <, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 3))
 (If Node, null)

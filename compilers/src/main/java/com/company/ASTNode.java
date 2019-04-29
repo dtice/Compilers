@@ -1,5 +1,13 @@
 package com.company;
 
+class ElseNode extends ASTNode {
+    ASTNode stmt_list;
+
+    ElseNode(){
+        super("Else Node");
+    }
+}
+
 class IfNode extends ASTNode {
     BinaryOpNode conditional;
     ASTNode stmt_list;
@@ -7,6 +15,12 @@ class IfNode extends ASTNode {
     
     IfNode(){
         super("If Node");
+    }
+}
+
+class EndIfNode extends ASTNode {
+    EndIfNode(){
+        super("EndIf node");
     }
 }
 
