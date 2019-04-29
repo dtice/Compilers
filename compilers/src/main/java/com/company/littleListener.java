@@ -30,7 +30,9 @@ public class littleListener extends littleParserBaseListener {
     public void exitAssign_expr(Assign_exprContext ctx) {
         BinaryOpNode equal = new BinaryOpNode(null, ":=");
         equal.addRightChild(exprStack.pop());
-        equal.addLeftChild(new ASTNode(ctx.id().getText()));
+        VarRefNode vrn = new VarRefNode();
+        vrn.setValue(ctx.id().getText());
+        equal.addLeftChild(vrn);
         exprStack.push(equal);
     }
 
@@ -128,12 +130,12 @@ public class littleListener extends littleParserBaseListener {
             }
             // Int Literal
             else if(ctx.primary().INTLITERAL() != null){
-                LiteralNode intLit = new LiteralNode(ctx.primary().INTLITERAL().getText(), "INT");
+                LiteralNode intLit = new LiteralNode("INT", ctx.primary().INTLITERAL().getText());
                 semanticStack.push(intLit);
             }
             // Float Literal
             else if(ctx.primary().FLOATLITERAL() != null){
-                LiteralNode floatLit = new LiteralNode(ctx.primary().FLOATLITERAL().getText(), "FLOAT");
+                LiteralNode floatLit = new LiteralNode("FLOAT", ctx.primary().FLOATLITERAL().getText());
                 semanticStack.push(floatLit);
             }
         }
@@ -285,8 +287,11 @@ public class littleListener extends littleParserBaseListener {
     }
 
     void printPostorder(ASTNode node) { 
-        if (node == null) 
-                return; 
+        if (node instanceof VarRefNode){
+            System.out.print(node.value + " "); 
+            return; 
+        }
+            
         if(node instanceof BinaryOpNode){
             BinaryOpNode bnode = (BinaryOpNode)node;
             
@@ -297,7 +302,7 @@ public class littleListener extends littleParserBaseListener {
             printPostorder(bnode.rightChild); 
             
             // now deal with the node 
-            System.out.print(bnode.name + " "); 
+            System.out.print(bnode.operator + " "); 
         }
     }
 
@@ -307,7 +312,8 @@ public class littleListener extends littleParserBaseListener {
             orderedExprStack.push(exprStack.pop());
         }
         while(!orderedExprStack.isEmpty()){
-            code += orderedExprStack.pop().toString() + '\n';
+            //code += orderedExprStack.pop().toString() + '\n';
+            printPostorder(orderedExprStack.pop());
         }
         return code;
     }

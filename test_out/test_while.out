@@ -1,11 +1,1 @@
 ;IR code
-(Op: :=, lChild: (num, null), rChild: (VarRef, FLOAT, 7.0))
-(Op: :=, lChild: (i, null), rChild: (VarRef, INT, 100))
-(Op: :=, lChild: (j, null), rChild: (VarRef, INT, 1))
-(Op: :=, lChild: (approx, null), rChild: (VarRef, num, type FLOAT))
-(While Node, null)
-(Op: !=, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 0))
-(Op: :=, lChild: (newapprox, null), rChild: (Op: +, lChild: (Op: *, lChild: (VarRef, FLOAT, 0.5), rChild: (VarRef, approx, type FLOAT)), rChild: (Op: /, lChild: (VarRef, num, type FLOAT), rChild: (VarRef, approx, type FLOAT))))
-(Op: :=, lChild: (approx, null), rChild: (VarRef, newapprox, type FLOAT))
-(Op: :=, lChild: (i, null), rChild: (Op: -, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 1)))
-(Exit While Node, null)
