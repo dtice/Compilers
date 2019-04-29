@@ -26,9 +26,13 @@ public class littleListener extends littleParserBaseListener {
 
     @Override
     public void exitCond(littleParserParser.CondContext ctx){
-        ASTNode a = semanticStack.pop();
-        ASTNode b = semanticStack.pop();
-        BinaryOpNode cond = new BinaryOpNode();
+        if(semanticStack.size() > 1){
+            ASTNode a = semanticStack.pop();
+            ASTNode b = semanticStack.pop();
+            BinaryOpNode cond = new BinaryOpNode("Conditional", ctx.compop().getText());
+            cond.addRightChild(a);
+            cond.addLeftChild(b);
+        }
     }
 
     @Override
