@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 
+import com.company.littleParserParser.Assign_exprContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -22,6 +23,13 @@ public class littleListener extends littleParserBaseListener {
         this.symbolTables = new Stack<>();
         this.symbolTableNames = new Stack<>();
         this.blockNum = 1;
+    }
+
+    @Override
+    public void exitAssign_expr(Assign_exprContext ctx) {
+        BinaryOpNode equal = new BinaryOpNode(null, ":=");
+        equal.addRightChild(exprStack.pop());
+        equal.addLeftChild(new ASTNode(ctx.id().getText()));
     }
 
     @Override
