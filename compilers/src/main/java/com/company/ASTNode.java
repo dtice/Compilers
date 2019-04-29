@@ -5,7 +5,9 @@ class IfNode extends ASTNode {
     ASTNode stmt_list;
     ASTNode else_part;
     
-    IfNode(){}
+    IfNode(){
+        super("If Node");
+    }
 }
 
 class LiteralNode extends VarRefNode {

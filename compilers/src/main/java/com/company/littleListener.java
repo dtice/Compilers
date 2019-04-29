@@ -25,6 +25,11 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
+    public void exitIf_stmt(littleParserParser.If_stmtContext ctx){
+        exprStack.push(new IfNode());
+    }
+
+    @Override
     public void exitCond(littleParserParser.CondContext ctx){
         if(exprStack.size() > 1){
             ASTNode a = exprStack.pop();
