@@ -1,5 +1,20 @@
 package com.company;
 
+class WhileNode extends ASTNode {
+    BinaryOpNode conditional;
+    ASTNode stmt_list;
+    
+    WhileNode(){
+        super("While Node");
+    }
+}
+
+class ExitWhileNode extends ASTNode{
+    ExitWhileNode(){
+        super("Exit While Node");
+    }
+}
+
 class ElseNode extends ASTNode {
     ASTNode stmt_list;
 

@@ -1,9 +1,10 @@
 ;IR code
+(Exit While Node, null)
 (Op: -, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 1))
 (VarRef, newapprox, type FLOAT)
 (Op: +, lChild: (Op: *, lChild: (VarRef, FLOAT, 0.5), rChild: (VarRef, approx, type FLOAT)), rChild: (Op: /, lChild: (VarRef, num, type FLOAT), rChild: (VarRef, approx, type FLOAT)))
-(VarRef, INT, 0)
-(VarRef, i, type INT)
+(Op: !=, lChild: (VarRef, i, type INT), rChild: (VarRef, INT, 0))
+(While Node, null)
 (VarRef, num, type FLOAT)
 (VarRef, INT, 1)
 (VarRef, INT, 100)

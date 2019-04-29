@@ -25,6 +25,11 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
+    public void exitWhile_stmt(littleParserParser.While_stmtContext ctx){
+        exprStack.push(new ExitWhileNode());
+    }
+
+    @Override
     public void exitIf_stmt(littleParserParser.If_stmtContext ctx){
         exprStack.push(new EndIfNode());
     }
@@ -175,6 +180,7 @@ public class littleListener extends littleParserBaseListener {
     public void enterWhile_stmt(littleParserParser.While_stmtContext ctx){
         // Create symbol table
         createBlockSymbolTable();
+        exprStack.push(new WhileNode());
     }
 
     @Override
