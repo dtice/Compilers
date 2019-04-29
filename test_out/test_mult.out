@@ -1,1 +1,8 @@
 ;IR code
+muli a c $T0
+muli b d $T1
+addi $T0 $T1 $T2
+muli b b $T3
+addi $T3 a $T4
+muli b a $T5
+divi $T5 a $T6

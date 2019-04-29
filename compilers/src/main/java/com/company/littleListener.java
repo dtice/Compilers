@@ -1,11 +1,9 @@
 package com.company;
 
-import java.util.Arrays;
+import java.awt.List;
 import java.util.LinkedHashMap;
 import java.util.Stack;
-
 import com.company.littleParserParser.Assign_exprContext;
-
 import org.antlr.v4.runtime.ParserRuleContext;
 
 
@@ -19,6 +17,7 @@ public class littleListener extends littleParserBaseListener {
     Stack<ASTNode> semanticStack = new Stack<>();
     Stack<ASTNode> exprStack = new Stack<>();
     Stack<ASTNode> orderedExprStack = new Stack<>();
+    List semanticList = new List();
 
     public littleListener(){
         this.symbolTables = new Stack<>();
@@ -175,6 +174,23 @@ public class littleListener extends littleParserBaseListener {
     }
 
     @Override
+    public void enterWrite_stmt(littleParserParser.Write_stmtContext ctx){
+        exprStack.push(new ASTNode("WriteStmt"));
+    }
+
+    @Override
+    public void enterRead_stmt(littleParserParser.Read_stmtContext ctx){
+        exprStack.push(new ASTNode("ReadStmt"));
+        
+    }
+
+    @Override
+    public void enterReturn_stmt(littleParserParser.Return_stmtContext ctx){
+        exprStack.push(new ASTNode("ReturnStmt"));
+
+    }
+
+    @Override
     public void enterFunc_decl(littleParserParser.Func_declContext ctx){
         // Create symbol table
         createSymbolTable(ctx.id().getText());
@@ -288,7 +304,8 @@ public class littleListener extends littleParserBaseListener {
 
     void printPostorder(ASTNode node) { 
         if (node instanceof VarRefNode){
-            System.out.print(node.value + " "); 
+            // System.out.print(node.value + " "); 
+            semanticList.add(node.value);
             return; 
         }
             
@@ -302,18 +319,62 @@ public class littleListener extends littleParserBaseListener {
             printPostorder(bnode.rightChild); 
             
             // now deal with the node 
-            System.out.print(bnode.operator + " "); 
+            // System.out.print(bnode.operator + " "); 
+            semanticList.add(bnode.operator);
         }
     }
 
     public String generateTinyCode(){
         String code = ";IR code\n";
+        int i = 0;
+        int j = 0;
         while(!exprStack.isEmpty()){
             orderedExprStack.push(exprStack.pop());
         }
         while(!orderedExprStack.isEmpty()){
             //code += orderedExprStack.pop().toString() + '\n';
             printPostorder(orderedExprStack.pop());
+        }
+        Stack<String> testStack = new Stack<>();
+        String currentNode = semanticList.getItem(i);
+        i++;
+        while(i < semanticList.getItemCount()){
+            testStack.push(currentNode);
+            currentNode = semanticList.getItem(i);
+            i++;
+            while(testStack.peek().matches("[+]|[-]|[*]|[/]|[(:=)]")){
+                String operator = testStack.pop();
+                String rightSide = testStack.pop();
+                String leftSide = testStack.pop();
+                switch(operator){
+                    case "+":
+                        code += "addi " + leftSide + " " + rightSide + " $T"+j+'\n';
+                        testStack.push("$T"+j);
+                        j++;
+                        break;
+                    case "-":
+                        code += "subi " + leftSide + " " + rightSide + " $T"+j+'\n';
+                        testStack.push("$T"+j);
+                        j++;
+                        break;
+                    case "/":
+                        code += "divi " + leftSide + " " + rightSide + " $T"+j+'\n';
+                        testStack.push("$T"+j);
+                        j++;
+                        break;
+                    case "*":
+                        code += "muli " + leftSide + " " + rightSide + " $T"+j+'\n';
+                        testStack.push("$T"+j);
+                        j++;
+                        break;
+                    case ":=":
+                        code += "STOREI " + rightSide + "$T" + j + '\n';
+                        code += "STOREI " + "$T" + j + " " + leftSide + '\n';
+                        testStack.push("$T"+j);
+                        j++;
+                        break;
+                }
+            }
         }
         return code;
     }
